@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Perpisahan Cinta</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #f7c6c7, #c6b4f7);
+      color: #3a3a3a;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #kontenAwal, #kontrolSetelahVideo {
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      color: #9b1d20;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.3em;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      line-height: 1.5;
+    }
+
+    .btn {
+      background-color: #b23a48;
+      color: white;
+      padding: 14px 30px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background-color: #8e2c38;
+    }
+
+    #videoContainer {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      background-color: black;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background-color: black;
+    }
+
+    #kontrolSetelahVideo {
+      display: none;
+      position: absolute;
+      top: 30px;
+      width: 100%;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Efek Suara Hujan -->
+  <audio id="hujanAudio" loop autoplay>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9cc7f69d98.mp3?filename=rain-on-window-ambient-110122.mp3" type="audio/mp3">
+    Browser Anda tidak mendukung audio.
+  </audio>
+
+  <!-- Konten Pembuka -->
+  <div id="kontenAwal">
+    <h1>Selamat Tinggal, Cinta</h1>
+    <p>Aku tak pernah siap kehilanganmu, tapi aku tahu… beberapa cinta hanya mampir untuk mengajarkan arti kehilangan.</p>
+    <button class="btn" onclick="putarVideo()">▶️ Putar Kenangan</button>
+    <a class="btn" href="https://wa.me/6281384940398" target="_blank">💬 Hubungi Aku</a>
+  </div>
+
+  <!-- Video Kenangan -->
+  <div id="videoContainer">
+    <video id="videoPerpisahan" controls>
+      <source src="lv_7500939719165938997_20250518073446.mp4" type="video/mp4">
+      Browser Anda tidak mendukung video.
+    </video>
+  </div>
+
+  <!-- Tombol Muncul Setelah Video Selesai -->
+  <div id="kontrolSetelahVideo">
+    <button class="btn" onclick="putarVideo()">🔁 Putar Lagi</button>
+    <a class="btn" href="https://wa.me/6281384940398" target="_blank">💌 Hubungi Aku</a>
+  </div>
+
+  <script>
+    const video = document.getElementById("videoPerpisahan");
+    const hujanAudio = document.getElementById("hujanAudio");
+
+    function putarVideo() {
+      document.getElementById("kontenAwal").style.display = "none";
+      document.getElementById("kontrolSetelahVideo").style.display = "none";
+      document.getElementById("videoContainer").style.display = "block";
+      document.body.style.background = "black";
+      hujanAudio.pause();
+      video.currentTime = 0;
+      video.play();
+    }
+
+    video.onended = () => {
+      document.getElementById("kontrolSetelahVideo").style.display = "block";
+    };
+  </script>
+
+</body>
+</html>
